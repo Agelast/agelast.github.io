@@ -1,1 +1,24 @@
-Error
+<!doctype html>
+<html>
+	<head>
+		<script>
+			window.repositories = [
+				"Template"
+			];
+			for (var i = 0; i < repositories.length; i++) {
+				if (location.pathname.indexOf(repositories[i]) === 1) {
+					var xhr = new XMLHttpRequest();
+					xhr.open("GET", "/" + repositories[i] + "/404.html");
+					xhr.responseType = "document";
+					xhr.addEventListener("load", function () {
+						document.replaceChild(xhr.response.documentElement, document.documentElement);
+					});
+					xhr.send();
+					break;
+				}
+			}
+		</script>
+	</head>
+	<body>
+	</body>
+</html>
