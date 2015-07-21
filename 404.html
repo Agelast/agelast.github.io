@@ -1,30 +1,28 @@
 <!doctype html>
 <html>
 	<head>
-		<style>
-			.hidden {
-				display: none;
-			}
-		</style>
 		<script>
-			window.repositories = [
-				"Template"
-			];
-			for (var i = 0; i < repositories.length; i++) {
-				if (location.pathname.indexOf(repositories[i]) === 1) {
-					document.querySelector("html").classList.add("hidden");
-					var xhr = new XMLHttpRequest();
-					xhr.open("GET", "/" + repositories[i] + "/404.html");
-					xhr.responseType = "document";
-					xhr.addEventListener("load", function () {
-						document.replaceChild(xhr.response.documentElement, document.documentElement);
-					});
-					xhr.send();
-					break;
+			(function () {
+				var repositories = [
+					"Template"
+				];
+				for (var i = 0; i < repositories.length; i++) {
+					if (location.pathname.indexOf(repositories[i]) === 1) {
+						document.documentElement.style.display = "none";
+						var xhr = new XMLHttpRequest();
+						xhr.open("GET", "/" + repositories[i] + "/404");
+						xhr.responseType = "document";
+						xhr.addEventListener("load", function () {
+							document.replaceChild(xhr.response.documentElement, document.documentElement);
+						});
+						xhr.send();
+						break;
+					}
 				}
-			}
+			}) ();
 		</script>
 	</head>
 	<body>
+		
 	</body>
 </html>
