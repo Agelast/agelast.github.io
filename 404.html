@@ -13,7 +13,11 @@
 						xhr.open("GET", "/" + repositories[i] + "/404");
 						xhr.responseType = "document";
 						xhr.addEventListener("load", function () {
-							document.replaceChild(xhr.response.documentElement, document.documentElement);
+							if (xhr.status === 200) {
+								document.replaceChild(xhr.response.documentElement, document.documentElement);
+							} else {
+								document.documentElement.style.display = "";
+							}
 						});
 						xhr.send();
 						break;
@@ -21,8 +25,32 @@
 				}
 			}) ();
 		</script>
+		<title>Error 404</title>
+		<style>
+			body {
+				background: #f1f1f1;
+				font-family: arial;
+				margin: 20px;
+			}
+			#container {
+				background: #fff;
+				box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+				display: inline-block;
+				padding: 15px;
+			}
+			a {
+				text-decoration: none;
+			}
+			a:hover {
+				text-decoration: underline;
+			}
+		</style>
 	</head>
 	<body>
-		
+		<div id="container">
+			<h1>404</h1>
+			<p>The requested page was not found.</p>
+			<a href="/">agelast.github.io</a>
+		</div>
 	</body>
 </html>
